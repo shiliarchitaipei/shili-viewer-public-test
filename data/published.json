@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0",
+  "revision": 1,
+  "carousel": [
+    {
+      "id": "c1",
+      "title": "2026 虛構建築設計工作坊",
+      "imagePath": "assets/images/banner1.png",
+      "alt": "虛構建築設計工作坊宣傳橫幅",
+      "targetUrl": "https://example.org/workshop",
+      "order": 0,
+      "enabled": true
+    },
+    {
+      "id": "c2",
+      "title": "虛構寒期探索營隊",
+      "imagePath": "assets/images/banner2.png",
+      "alt": "虛構寒期營隊宣傳橫幅",
+      "targetUrl": "https://example.org/winter-camp",
+      "order": 1,
+      "enabled": true
+    },
+    {
+      "id": "c3",
+      "title": "",
+      "imagePath": "assets/images/banner3.png",
+      "alt": "虛構學員年度成果展覽橫幅 (無標題測試)",
+      "targetUrl": "https://example.org/exhibition",
+      "order": 2,
+      "enabled": true
+    }
+  ],
+  "documents": [
+    {
+      "id": "doc-tpe-01",
+      "branchId": "taipei-main",
+      "title": "台北校本部 - 2026 課程大綱與規範 (虛構)",
+      "filePath": "assets/documents/branch_taipei_syllabus.pdf",
+      "version": "2026.1"
+    },
+    {
+      "id": "doc-txg-01",
+      "branchId": "taichung-studio",
+      "title": "台中工坊 - 工坊指南與器材須知 (虛構)",
+      "filePath": "assets/documents/branch_taichung_syllabus.pdf",
+      "version": "2026.1"
+    }
+  ],
+  "news": [
+    {
+      "id": "public-test-notice",
+      "title": "公開測試展示：全部為合成資料",
+      "body": "本頁僅展示三張假輪播與兩份假課程PDF，不提供報名、付款、管理或發布功能。example.org連結為示例，點擊會離開本頁。"
+    }
+  ],
+  "books": [
+    {
+      "id": "book-01",
+      "title": "虛構建築構造解析導論",
+      "purchaseUrl": "https://example.org/books/arch-01"
+    },
+    {
+      "id": "book-02",
+      "title": "設計思維與材料工法手冊",
+      "purchaseUrl": "https://example.org/books/design-02"
+    }
+  ]
+}
