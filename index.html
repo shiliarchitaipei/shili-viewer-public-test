@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>離線 Viewer 原型候選 (D03 v2.5)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Disclaimer Notice Banner -->
+  <div class="disclaimer-banner" role="alert">
+    <span class="disclaimer-badge">公開測試／合成素材</span>
+    此公開候選僅讀取合成展示資料；不含管理介面、草稿、舊快照或正式網站素材。所有課程與圖片均為虛構。
+  </div>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-row">
+        <div>
+          <h1 class="app-title">離線 Viewer 原型候選 (Prototype Candidate v2.5)</h1>
+          <p class="app-subtitle">任務編號：D03 ｜ 契約版本：Schema 1.0 ｜ 選定修補版 PDF.js v4.10.38</p>
+        </div>
+        <div>
+          <span id="contract-badge" style="font-size: 0.85rem; padding: 4px 8px; border-radius: 4px; background: #e8f8f5; color: #117a65; font-weight: bold;">
+            Schema 1.0 (載入中)
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Public candidate: no draft/snapshot controls or files included. -->
+
+    <!-- Error/Notice Display Box -->
+    <div id="notice-container" class="notice-box danger" role="alert" aria-live="polite">
+      <h4 id="notice-title" style="margin-bottom: 6px;">契約驗證失敗</h4>
+      <ul id="notice-list" style="margin-left: 20px;"></ul>
+    </div>
+
+    <!-- Carousel Section (tabindex="0" so keyboard ArrowLeft/ArrowRight only triggers when focused) -->
+    <section class="carousel-wrapper" aria-label="活動輪播展示區" aria-roledescription="carousel" tabindex="0" id="carousel-section">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <h2 class="section-title">活動輪播 (Carousel)</h2>
+        <span style="font-size: 0.8rem; color: var(--text-muted);">輪播區聚焦時支援鍵盤 ← / → 操作</span>
+      </div>
+      <div class="carousel-container" id="carousel-track" aria-live="polite">
+        <!-- Slides dynamically rendered here via safe DOM textContent -->
+      </div>
+      <button class="carousel-btn prev" id="carousel-btn-prev" aria-label="上一張輪播圖" type="button">&#10094;</button>
+      <button class="carousel-btn next" id="carousel-btn-next" aria-label="下一張輪播圖" type="button">&#10095;</button>
+      <div class="carousel-indicators" id="carousel-indicators-container" role="tablist" aria-label="輪播投影片指示器"></div>
+    </section>
+
+    <!-- PDF / Branch Documents Section -->
+    <section class="docs-section" aria-label="分班課程與規範文件檢視區">
+      <h2 class="section-title">課程大綱與分班文件檢視 (Document Viewer)</h2>
+      
+      <!-- Branch and Document Controls -->
+      <div class="branch-filter-bar">
+        <label for="branch-selector" style="font-weight: 600; font-size: 0.9rem;">分班切換：</label>
+        <select id="branch-selector" class="branch-select" aria-label="切換分班">
+          <option value="ALL">全部虛構分班 (All Branches)</option>
+          <option value="taipei-main">虛構台北校本部 (taipei-main)</option>
+          <option value="taichung-studio">虛構台中工坊 (taichung-studio)</option>
+        </select>
+
+        <label for="doc-selector" style="font-weight: 600; font-size: 0.9rem; margin-left: 12px;">選擇文件：</label>
+        <select id="doc-selector" class="doc-select" aria-label="選擇文件"></select>
+      </div>
+
+      <!-- Viewer Toolbar -->
+      <div class="viewer-toolbar" id="pdf-toolbar">
+        <div class="toolbar-group">
+          <button id="pdf-btn-prev-page" class="btn btn-secondary" type="button" aria-label="上一頁" disabled>&larr; 上一頁</button>
+          <span id="pdf-page-indicator" class="page-indicator">載入與檢驗中 (頁數待確認)...</span>
+          <button id="pdf-btn-next-page" class="btn btn-secondary" type="button" aria-label="下一頁" disabled>下一頁 &rarr;</button>
+        </div>
+
+        <div class="toolbar-group">
+          <button id="pdf-btn-zoom-out" class="btn btn-secondary" type="button" aria-label="縮小">&#8722;</button>
+          <span id="pdf-zoom-indicator" class="zoom-indicator">100%</span>
+          <button id="pdf-btn-zoom-in" class="btn btn-secondary" type="button" aria-label="放大">&#43;</button>
+          <button id="pdf-btn-zoom-reset" class="btn btn-secondary" type="button" aria-label="重設縮放">100%</button>
+        </div>
+
+        <div class="toolbar-group">
+          <button id="pdf-btn-open-tab" class="btn" type="button">另開 PDF</button>
+          <a id="pdf-btn-download" class="btn" href="#" download>下載 PDF</a>
+        </div>
+      </div>
+
+      <!-- PDF Display Container -->
+      <div class="pdf-display-container" id="pdf-display-area">
+        <div id="pdf-render-surface" class="pdf-page-surface">
+          <!-- Rendered object or fallback card -->
+        </div>
+      </div>
+    </section>
+
+    <!-- News & Books Grid -->
+    <div class="info-grid">
+      <section class="info-card" aria-label="最新消息清單">
+        <h2 class="section-title">最新消息 (News)</h2>
+        <ul id="news-list" class="info-list"></ul>
+      </section>
+
+      <section class="info-card" aria-label="推薦書目清單">
+        <h2 class="section-title">推薦書目 (Books)</h2>
+        <ul id="books-list" class="info-list"></ul>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>任務 D03 離線 Viewer 原型候選 (v2) ｜ 離線包資源均由本地生成與提供 ｜ 無任何外鏈追蹤與 CDN 依賴</p>
+    </footer>
+  </div>
+
+  <script>
+    window.__pdfjsReadyPromise = import('./vendor/pdfjs/pdf.min.mjs')
+      .then(function (pdfjsLib) {
+        window.pdfjsLib = pdfjsLib;
+        if (pdfjsLib && pdfjsLib.GlobalWorkerOptions) {
+          pdfjsLib.GlobalWorkerOptions.workerSrc = './vendor/pdfjs/pdf.worker.min.mjs';
+        }
+        return pdfjsLib;
+      })
+      .catch(function (err) {
+        window.__pdfjsLoadError = err;
+        return null;
+      });
+  </script>
+  <script src="js/validator.js"></script>
+  <script src="js/pdf_inspector.js"></script>
+  <script src="js/viewer.js"></script>
+</body>
+</html>
