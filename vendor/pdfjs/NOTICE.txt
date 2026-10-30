@@ -1,0 +1,24 @@
+Public bundle note: only minified runtime/worker, CMaps, fonts and licenses are included. Non-minified builds from the full engineering candidate are intentionally omitted.
+
+Mozilla PDF.js (pdfjs-dist)
+Selected Compatible Patched Version: 4.10.38 (Not claimed as upstream latest release)
+Upstream Package Source: https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-4.10.38.tgz (Mozilla GitHub: https://github.com/mozilla/pdf.js/releases/tag/v4.10.38)
+License: Apache License 2.0 (see LICENSE file in this directory)
+Copyright 2024 Mozilla Foundation
+
+Version Selection & Security Rationale:
+- Mozilla Security Advisory GHSA-wgrm-67xf-hhpq (CVE-2024-4367, font matrix arbitrary code execution) affects pdfjs-dist <= 4.1.392 and is patched in >= 4.2.67.
+- Version 4.10.38 is selected as a compatible, security-patched 4.x release whose native ESM build (.mjs) works directly with local loopback HTTP serving and Node.js v22 test runners without bundler transpilation.
+
+Bundled Local Asset Hashes (SHA-256) & Byte Sizes:
+- pdf.min.mjs (352,645 bytes): 27fc2a057a00f92a4334ad06e17dbd7259912954e9fb7f76400bcca5fd190a9c
+- pdf.worker.min.mjs (1,375,838 bytes): 1baa1844c89c80a5b2797c916e75ab29254be46d8e9cb53cb6364d7aad84be36
+- LICENSE (10,174 bytes): 0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594
+- CMap resources: cmaps/ (169 files, Adobe Systems Incorporated, see cmaps/LICENSE)
+- Standard Fonts: standard_fonts/
+  - Liberation Fonts: SIL Open Font License / Liberation License (see standard_fonts/LICENSE_LIBERATION)
+  - Foxit Fonts: Foxit License (see standard_fonts/LICENSE_FOXIT)
+
+Supply-Chain Verification Boundary Note:
+- Automated unit tests in this repository verify local file existence, size thresholds, version string ("4.10.38"), and PDF parsing behavior.
+- In-repo NOTICE metadata, file size checks, and version strings are NOT a substitute for independent upstream tarball byte-by-byte verification. Independent QA may compare the above SHA-256 digests directly against an independently fetched upstream pdfjs-dist@4.10.38 tarball.
