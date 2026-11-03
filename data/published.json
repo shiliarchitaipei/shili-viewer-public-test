@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0",
-  "revision": 1,
+  "revision": 2,
   "carousel": [
     {
       "id": "c1",
-      "title": "2026 虛構建築設計工作坊",
-      "imagePath": "assets/images/banner1.png",
+      "title": "擁有者連線探針 v2：全新合成假資料",
+      "imagePath": "assets/images/owner-probe-v2-20261101-edafe53d0227.png",
       "alt": "虛構建築設計工作坊宣傳橫幅",
       "targetUrl": "https://example.org/workshop",
       "order": 0,
@@ -35,8 +35,8 @@
       "id": "doc-tpe-01",
       "branchId": "taipei-main",
       "title": "台北校本部 - 2026 課程大綱與規範 (虛構)",
-      "filePath": "assets/documents/branch_taipei_syllabus.pdf",
-      "version": "2026.1"
+      "filePath": "assets/documents/owner-probe-v2-20261101-5d5a83a3b237.pdf",
+      "version": "owner-probe-v2-20261101"
     },
     {
       "id": "doc-txg-01",
